@@ -22,13 +22,7 @@ img {
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.space-between {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 .text-shadow {
@@ -64,7 +58,7 @@ body {
 /* HEADER STYLES */
 
 .header-art {
-    height: calc(100vw / (1210 / 1080));
+    height: 100vw;
     width: 100vw;
     max-width: 100%;
     background-image: url('img/hero_small.jpg');
@@ -120,7 +114,7 @@ a {
 
 p {
     font-family: 'Marcellus', serif;
-    font-size: clamp(1.2rem, 2vw, 2rem);
+    font-size: clamp(1.1rem, 2vw, 2rem);
     letter-spacing: 0.05rem;
     padding: max(10px, 1.5vw) 20px;
     text-align: center;
@@ -148,7 +142,7 @@ h2, h3, h4 {
 h2 {
     justify-content: center;
     font-size: clamp(2rem, 5vw, 4rem);
-    padding: 2vh;
+    padding: 4vh 2vh;
 }
 
 h3 {
@@ -187,14 +181,22 @@ h4 {
     text-align: center;
 }
 
+.h23 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    max-width: 1500px;
+}
+
 /* ABOUT SECTION */
 
-.about {
+.about-container {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column;
     justify-content: center;
     gap: 20px;
-    max-width: 1200px;
 }
 
 span::after {
@@ -205,13 +207,9 @@ span::after {
     padding: 20px 0;
 }
 
-.icons {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    column-gap: 4vw;
-    padding: 1.5vw;
-    row-gap: 10px;
+.social-icons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
 }
 
 .logo-card {
@@ -234,17 +232,32 @@ span::after {
 
 /* WEB DEV SECTION */
 
+.skill-icons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 4vw;
+    padding: 1.5vw;
+    row-gap: 10px;
+}
+
 .projects {
     display: flex;
     flex-direction: column;
-    padding: 20px;
-    gap: 5vw;
     max-width: 550px;
 }
 
 .projects p {
     padding: 15px 0;
     text-align: left;
+}
+
+.project-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
 }
 
 .button-link {
@@ -264,7 +277,7 @@ span::after {
 
 /* ART SECTION */
 
-.fotu-intros {
+.fotu-column {
     display: flex;
     flex-direction: column;
     gap: 2vw;
@@ -278,6 +291,10 @@ span::after {
     gap: 2vw;
     max-width: 600px;
     padding: 2vw;
+}
+
+.fotu-vftl {
+    padding-top: 0;
 }
 
 .fotu-grid img, 
@@ -347,6 +364,10 @@ footer a {
 
 
 @media screen and (min-width: 768px) {
+    .flex-column {
+        width: auto;
+    }
+
     .header-art {
         height: calc(100vw / (1920 / 1080));
         background-image: url('img/hero_large.jpg');
@@ -386,7 +407,7 @@ footer a {
     }
 
     nav ul li {
-        font-size: clamp(1.3rem, 2.5vw, 3rem);
+        font-size: clamp(1.3rem, 2.5vw, 2.8rem);
         letter-spacing: 3px;
     }
 
@@ -394,17 +415,44 @@ footer a {
         max-width: 85vw;
     }
 
+    .h23 {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .about-container {
+        display: grid;
+        grid-template-columns: auto 40vw;
+        gap: 1vw;
+        padding: 5px;
+    }
+
+    .about-container > section {
+        grid-column: 2 / 3;
+        grid-row: 1 / 2;
+    }
+
+    .about-container > img {
+        grid-column: 1 / 2;
+    }
+
+    .fotu-poster {
+        height: min(100vh, calc(100vw / (1194 / 834)));
+        max-width: 1200px;
+    }
+
     .icons {
-        column-gap: 1.5vw;
+        column-gap: 0.5vw;
     }
 
     .logo-card {
-        padding: 20px;
+        padding: 10px;
     }
 
     .projects {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(317px, 1fr));
+        padding: 20px;
         gap: 2vw;
         max-width: min(90vw, 1500px);
     }
@@ -413,8 +461,8 @@ footer a {
         max-width: 1900px;
     }
 
-    .fotu-intros {
-        width: min(98vw, 1900px);
+    .fotu-column {
+        width: min(97vw, 1900px);
     }
 
     .fotu-grid {
@@ -472,9 +520,7 @@ footer a {
     .sword-previews {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        padding: 0;
         gap: 10px;
-        width: min(90vw, 1500px);
     }
 
     footer {
